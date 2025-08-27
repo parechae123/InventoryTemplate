@@ -62,11 +62,21 @@ public class Weapon : IItem
     public Sprite IconSprite { get { return iconSprite; } }
     private bool isEquiped = false;
     public bool IsEquiped => isEquiped;
+    public Weapon(int itemValue, Sprite iconSprite)
+    {
+        this.itemValue = itemValue;
+        this.iconSprite = iconSprite;
+        this.isEquiped = false;
+    }
 
     public void Equip()
     {
         GameManager.GetInstance.player.stat.ATK += ItemValue;
         isEquiped = true;
+        if (GameManager.GetInstance.player.equiped.weapon != null)
+        {
+            GameManager.GetInstance.player.equiped.weapon.UnEquip();
+        }
         GameManager.GetInstance.player.equiped.weapon = this;
     }
     public void UnEquip()
@@ -84,9 +94,19 @@ public class Gloves : IItem
     public Sprite IconSprite { get { return iconSprite; } }
     public bool IsEquiped => isEquiped;
     private bool isEquiped = false;
+    public Gloves(int itemValue, Sprite iconSprite)
+    {
+        this.itemValue = itemValue;
+        this.iconSprite = iconSprite;
+        this.isEquiped = false;
+    }
     public void Equip()
     {
         GameManager.GetInstance.player.stat.CRIT += ItemValue;
+        if (GameManager.GetInstance.player.equiped.gloves != null)
+        {
+            GameManager.GetInstance.player.equiped.gloves.UnEquip();
+        }
         isEquiped = true;
         GameManager.GetInstance.player.equiped.gloves = this;
     }
@@ -105,9 +125,19 @@ public class Helmet : IItem
     public Sprite IconSprite { get { return iconSprite; } }
     public bool IsEquiped => isEquiped;
     private bool isEquiped = false;
+    public Helmet(int itemValue, Sprite iconSprite)
+    {
+        this.itemValue = itemValue;
+        this.iconSprite = iconSprite;
+        this.isEquiped = false;
+    }
     public void Equip()
     {
         GameManager.GetInstance.player.stat.DEF += ItemValue;
+        if (GameManager.GetInstance.player.equiped.helmet != null)
+        {
+            GameManager.GetInstance.player.equiped.helmet.UnEquip();
+        }
         isEquiped = true;
         GameManager.GetInstance.player.equiped.helmet = this;
     }
@@ -126,9 +156,19 @@ public class ChestArmor : IItem
     public Sprite IconSprite { get { return iconSprite; } }
     public bool IsEquiped => isEquiped;
     private bool isEquiped = false;
+    public ChestArmor(int itemValue, Sprite iconSprite)
+    {
+        this.itemValue = itemValue;
+        this.iconSprite = iconSprite;
+        this.isEquiped = false;
+    }
     public void Equip()
     {
         GameManager.GetInstance.player.stat.HP += ItemValue;
+        if (GameManager.GetInstance.player.equiped.chestArmor != null)
+        {
+            GameManager.GetInstance.player.equiped.chestArmor.UnEquip();
+        }
         isEquiped = true;
         GameManager.GetInstance.player.equiped.chestArmor = this;
     }

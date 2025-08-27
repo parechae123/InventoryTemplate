@@ -13,10 +13,8 @@ public class InvenPannel : MonoBehaviour
     int currIndex = 0;
     int GetCurrMinIndex { get { return currIndex * buttons.Length; } }
     int GetCurrMaxIndex { get { return currIndex * buttons.Length+ buttons.Length; } }
-    
     IEnumerator Start()
     {
-        if (buttons != null) yield break;
         buttons = new Button[transform.childCount];
         texts = new TextMeshProUGUI[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
@@ -26,6 +24,7 @@ public class InvenPannel : MonoBehaviour
         }
         
         yield return new WaitUntil(() => UIManager.GetInstance.IsLoad);
+        yield return new WaitUntil(() => ResourceManager.GetInstance.GetAtlas != null);
         yield return new WaitUntil(() => GameManager.GetInstance.player != null);
         UIManager.GetInstance.StatUpdate();
         transform.parent.parent.gameObject.SetActive(false);
@@ -35,6 +34,7 @@ public class InvenPannel : MonoBehaviour
         }
         UIManager.GetInstance.updateInven += OnEnable;
     }
+
 
     public void OnEquip(int btnIndex) 
     {
@@ -49,6 +49,7 @@ public class InvenPannel : MonoBehaviour
     private void OnUnEquip(int btnIndex)
     {
         int dataIndex = GetCurrMinIndex + btnIndex;
+        //if (GameManager.GetInstance.player.inven[dataIndex].IsEquiped)
         texts[btnIndex].text = string.Empty;
         buttons[btnIndex].onClick.RemoveAllListeners();
         buttons[btnIndex].onClick.AddListener(() => { OnEquip(btnIndex); });
@@ -114,7 +115,7 @@ public class InvenPannel : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (UIManager.GetInstance.IsLoad || GameManager.GetInstance.player == null) return;
+        if (!UIManager.GetInstance.IsLoad || GameManager.GetInstance.player == null || buttons == null) return;
         for (int i = 0; i < buttons.Length; i++)
         {
             SetButtonImage(i, i + GetCurrMinIndex);
