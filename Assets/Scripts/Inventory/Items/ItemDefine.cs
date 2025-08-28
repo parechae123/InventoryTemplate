@@ -6,8 +6,8 @@ using UnityEngine;
 // 인벤토리 클래스
 public class Inventory
 {
-    IItem[] itemSlot; // 아이템 슬롯 배열
-    public IItem[] GetInvenTory { get { return itemSlot; } } // 전체 인벤토리 접근자
+    List<IItem> itemSlot; // 아이템 슬롯 배열
+    public List<IItem> GetInvenTory { get { return itemSlot; } } // 전체 인벤토리 접근자
 
     // 인덱서: 인벤토리 슬롯에 직접 접근 가능
     public IItem this[int index]
@@ -19,21 +19,14 @@ public class Inventory
     // 인벤토리 크기 설정
     public Inventory(int index)
     {
-        this.itemSlot = new IItem[index];
+        this.itemSlot = new List<IItem>(index);
     }
 
     // 아이템 획득 (빈 슬롯에 아이템 추가)
     public void ItemGet(IItem item)
     {
-        for (int i = 0; i < itemSlot.Length; i++)
-        {
-            if (itemSlot[i] == null)
-            {
-                itemSlot[i] = item;
-                UIManager.GetInstance.updateInven?.Invoke(); // UI 갱신
-                break;
-            }
-        }
+        itemSlot.Add(item);
+        UIManager.GetInstance.updateInven?.Invoke(); // UI 
     }
 }
 

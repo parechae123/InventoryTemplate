@@ -80,7 +80,7 @@ public class InvenPannel : MonoBehaviour
         buttons[btnIndex].onClick.RemoveAllListeners();
 
         // 인벤토리 범위 체크
-        if (dataIndex < GameManager.GetInstance.player.inven.GetInvenTory.Length)
+        if (dataIndex < GameManager.GetInstance.player.inven.GetInvenTory.Count)
         {
             // 해당 칸에 아이템이 있을 경우
             if (GameManager.GetInstance.player.inven[dataIndex] != null)
@@ -116,7 +116,7 @@ public class InvenPannel : MonoBehaviour
     // 페이지 앞으로 이동
     public void OnFowardBTN()
     {
-        int maxIndex = GameManager.GetInstance.player.inven.GetInvenTory.Length;
+        int maxIndex = GameManager.GetInstance.player.inven.GetInvenTory.Count;
         if (GetCurrMaxIndex >= maxIndex) return; // 더 넘어갈 페이지가 없으면 리턴
         currIndex++;
         for (int i = 0; i < buttons.Length; i++)
