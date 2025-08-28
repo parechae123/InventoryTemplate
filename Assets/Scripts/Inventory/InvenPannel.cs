@@ -75,6 +75,7 @@ public class InvenPannel : MonoBehaviour
     private void SetButtonImage(int btnIndex, int dataIndex)
     {
         texts[btnIndex].text = string.Empty;
+        
         buttons[btnIndex].image.sprite = null;
         buttons[btnIndex].image.enabled = true;
         buttons[btnIndex].onClick.RemoveAllListeners();
