@@ -6,7 +6,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InvenPannel : MonoBehaviour
+public class InvenPagePannel : MonoBehaviour
 {
     Button[] buttons;                // 인벤토리 칸(버튼)
     TextMeshProUGUI[] texts;         // 버튼 위에 표시되는 텍스트 (예: "E")

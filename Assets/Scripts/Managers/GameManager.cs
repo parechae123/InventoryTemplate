@@ -8,7 +8,7 @@ public class GameManager : SingleTon<GameManager>
     protected override void Init()
     {
         base.Init();
-        player = new Player();
+        player = new Player("Player");
     }
     public void CallEmpty() { }
 }

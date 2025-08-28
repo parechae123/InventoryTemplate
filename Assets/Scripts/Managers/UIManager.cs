@@ -10,7 +10,11 @@ public class UIManager : SingleTon<UIManager>
     TextMeshProUGUI defText;
     TextMeshProUGUI hpText;
     TextMeshProUGUI cirtRateText;
-    public bool IsLoad { get { return atkText != null && defText != null && hpText != null && cirtRateText != null; } }
+    TextMeshProUGUI levelText;
+    TextMeshProUGUI nameText;
+    public bool IsLoad { get {
+            return atkText != null && defText != null && hpText != null && cirtRateText != null
+                && levelText != null && nameText != null; } }
     public Action updateInven;
     public string SetATKText
     {
@@ -28,6 +32,14 @@ public class UIManager : SingleTon<UIManager>
     {
         set { cirtRateText.text = $"critRate \n{value}"; }
     }
+    public string SetPlayerNameText
+    {
+        set { nameText.text = $"{value}"; }
+    }
+    public string SetPlayerLevelText
+    {
+        set { levelText.text = $"LV.{value}"; }
+    }
 
 
     protected override void Init()
@@ -37,6 +49,8 @@ public class UIManager : SingleTon<UIManager>
         defText = statPanel.Find("DEF").Find("DEFText").GetComponent<TextMeshProUGUI>();
         hpText = statPanel.Find("HP").Find("HPText").GetComponent<TextMeshProUGUI>();
         cirtRateText = statPanel.Find("CritRate").Find("CritText").GetComponent<TextMeshProUGUI>();
+        nameText = GameObject.Find("CharactorText").GetComponent<TextMeshProUGUI>();
+        levelText = GameObject.Find("LVText").GetComponent<TextMeshProUGUI>();
         statPanel.parent.gameObject.SetActive(false);
     }
     public void StatUpdate()

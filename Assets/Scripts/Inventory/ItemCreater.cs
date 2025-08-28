@@ -17,5 +17,8 @@ public class ItemCreater : MonoBehaviour
             GameManager.GetInstance.player.inven.ItemGet(new ChestArmor(10, ResourceManager.GetInstance.GetAtlas.GetSprite("armor")));
             GameManager.GetInstance.player.inven.ItemGet(new Gloves(10, ResourceManager.GetInstance.GetAtlas.GetSprite("gloves")));
         }
+        UIManager.GetInstance.SetPlayerNameText = GameManager.GetInstance.player.name;
+        UIManager.GetInstance.SetPlayerLevelText = GameManager.GetInstance.player.stat.Level.ToString();
     }
+    
 }

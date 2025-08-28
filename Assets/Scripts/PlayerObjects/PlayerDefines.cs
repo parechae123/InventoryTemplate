@@ -5,9 +5,14 @@ using UnityEngine;
 // 플레이어 클래스
 public class Player
 {
+    public string name;
     public PlayerStat stat = new PlayerStat(40, 30, 100, 10); // 플레이어 기본 능력치
     public Inventory inven = new Inventory(120);           // 플레이어 인벤토리 (최대 120칸)
     public Equiped equiped = new Equiped();                // 장착 아이템 정보
+    public Player(string name)
+    {
+        this.name = name;
+    }
 }
 
 // 플레이어 능력치 클래스
@@ -53,6 +58,16 @@ public class PlayerStat
         set
         {
             crit = value;
+            UIManager.GetInstance.SetCritRateText = value.ToString(); // UI에 치명타 확률 표시 갱신
+        }
+    }
+    int level = 1; // 치명타 확률
+    public int Level
+    {
+        get { return level; }
+        set
+        {
+            level = value;
             UIManager.GetInstance.SetCritRateText = value.ToString(); // UI에 치명타 확률 표시 갱신
         }
     }
